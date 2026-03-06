@@ -47,14 +47,22 @@ function AppOuter(): React.JSX.Element | null {
 
 function AppInner(): React.JSX.Element {
 	const colors = useThemeColors();
+	const hasAccount = true//useHasAccount();
+	const isUnlocked = true//
   return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: colors.background.val }} edges={{
 			top: "additive",
 			bottom: "off"
 		}}>
-      <Stack>
+			<Stack>
+			<Stack.Protected guard={!hasAccount || !isUnlocked}>
+				<Stack.Screen name="(auth)" options={{ headerShown: false }}/>
+				<Stack.Screen name="+not-found"/>
+			</Stack.Protected>
+      <Stack.Protected guard={hasAccount && isUnlocked}>
 				<Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
 				<Stack.Screen name="+not-found"/>
+			</Stack.Protected>
 			</Stack>
 		</SafeAreaView>
 	);
