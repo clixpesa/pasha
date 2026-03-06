@@ -5,7 +5,7 @@ import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider } from "react-redux";
-import { Text } from "@/ui"
+import { Slot, Stack, router, useSegments } from "expo-router";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -48,8 +48,14 @@ function AppOuter(): React.JSX.Element | null {
 function AppInner(): React.JSX.Element {
 	const colors = useThemeColors();
   return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: colors.background.val }}>
-      <Text>This is the first page</Text>
+		<SafeAreaView style={{ flex: 1, backgroundColor: colors.background.val }} edges={{
+			top: "additive",
+			bottom: "off"
+		}}>
+      <Stack>
+				<Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
+				<Stack.Screen name="+not-found"/>
+			</Stack>
 		</SafeAreaView>
 	);
 }
