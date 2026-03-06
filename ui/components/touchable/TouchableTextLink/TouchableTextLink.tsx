@@ -3,13 +3,13 @@ import { forwardRef, memo, useMemo, useRef } from 'react'
 import type { GestureResponderEvent } from 'react-native'
 import { Linking } from 'react-native'
 import { type ColorTokens, styled, type TamaguiElement } from 'tamagui'
-import { Text, type TextProps } from 'ui/src/components/text'
-import { TouchableAreaFrame } from 'ui/src/components/touchable/TouchableArea/TouchableAreaFrame'
-import type { TouchableAreaProps } from 'ui/src/components/touchable/TouchableArea/types'
-import { getMaybeHoverColor } from 'ui/src/theme'
-import { logger } from 'utilities/src/logger/logger'
-import { isMobileApp } from 'utilities/src/platform'
-import { useEvent } from 'utilities/src/react/hooks'
+import { Text, type TextProps } from '@/ui/components/text'
+import { TouchableAreaFrame } from '@/ui/components/touchable/TouchableArea/TouchableAreaFrame'
+import type { TouchableAreaProps } from '@/ui/components/touchable/TouchableArea/types'
+import { getMaybeHoverColor } from '@/ui/theme/tokens'
+import { logger } from '@/utilities/logger/logger'
+import { isMobileApp } from '@/utilities/platform'
+import { useEvent } from '@/utilities/react/hooks'
 
 type PropsFromText = Pick<
   TextProps,
@@ -48,7 +48,7 @@ const TouchableTextLinkFrame = styled(TouchableAreaFrame, {
   variant: 'unstyled',
   hoverStyle: undefined,
   focusVisibleStyle: undefined,
-  borderRadius: '$none',
+  rounded: '$none',
 })
 
 TouchableTextLinkFrame.displayName = 'TouchableTextLinkFrame'

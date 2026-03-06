@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { useAnimatedStyle, useSharedValue, withRepeat, withSequence, withTiming } from 'react-native-reanimated'
-import { AnimatedTouchableArea } from 'ui/src/components/touchable'
+import { AnimatedTouchableArea } from '@/ui/components/touchable'
 
 export const Jiggly = ({
   children,
