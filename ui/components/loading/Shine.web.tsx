@@ -1,5 +1,5 @@
 import { Flex } from '@/ui/components/layout'
-import { ShineProps } from '@/ui/loading/ShineProps'
+import { ShineProps } from '@/ui/components/loading/ShineProps'
 
 const shineKeyframe = `
   @keyframes shine {

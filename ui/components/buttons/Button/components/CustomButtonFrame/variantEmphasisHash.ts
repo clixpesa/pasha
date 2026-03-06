@@ -4,15 +4,15 @@ import {
   criticalFocusVisibleStyle,
   defaultFocusVisibleStyle,
   warningFocusVisibleStyle,
-} from 'ui/src/components/buttons/Button/components/CustomButtonFrame/constants'
-import { withCommonPressStyle } from 'ui/src/components/buttons/Button/components/CustomButtonFrame/utils'
-import type { ButtonEmphasis, ButtonVariant } from 'ui/src/components/buttons/Button/types'
+} from '@/ui/components/buttons/Button/components/CustomButtonFrame/constants'
+import { withCommonPressStyle } from '@/ui/components/buttons/Button/components/CustomButtonFrame/utils'
+import type { ButtonEmphasis, ButtonVariant } from '@/ui/components/buttons/Button/types'
 
 type ButtonStyleLookup = {
   [variant in ButtonVariant]: {
     [emphasis in ButtonEmphasis]: Pick<
       XStackProps,
-      'backgroundColor' | 'borderColor' | 'hoverStyle' | 'focusVisibleStyle' | 'pressStyle'
+      'bg' | 'borderColor' | 'hoverStyle' | 'focusVisibleStyle' | 'pressStyle'
     >
   }
 }
@@ -20,29 +20,29 @@ type ButtonStyleLookup = {
 export const variantEmphasisHash: ButtonStyleLookup = {
   default: {
     primary: {
-      backgroundColor: '$accent3',
+      bg: '$accent3',
       hoverStyle: {
-        backgroundColor: '$accent3Hovered',
+        bg: '$accent3Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$accent3Hovered',
+        bg: '$accent3Hovered',
         ...defaultFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
-        backgroundColor: '$accent3Hovered',
+        bg: '$accent3Hovered',
       }),
     },
     secondary: {
-      backgroundColor: '$surface3',
+      bg: '$surface3',
       hoverStyle: {
-        backgroundColor: '$surface3Hovered',
+        bg: '$surface3Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$surface3Hovered',
+        bg: '$surface3Hovered',
         ...defaultFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
-        backgroundColor: '$surface3Hovered',
+        bg: '$surface3Hovered',
       }),
     },
     tertiary: {
@@ -51,7 +51,7 @@ export const variantEmphasisHash: ButtonStyleLookup = {
         borderColor: '$surface3Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$surface1',
+        bg: '$surface1',
         ...defaultFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
@@ -68,29 +68,29 @@ export const variantEmphasisHash: ButtonStyleLookup = {
   },
   branded: {
     primary: {
-      backgroundColor: '$accent1',
+      bg: '$accent1',
       hoverStyle: {
-        backgroundColor: '$accent1Hovered',
+        bg: '$accent1Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$accent1Hovered',
+        bg: '$accent1Hovered',
         ...brandedFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
-        backgroundColor: '$accent1Hovered',
+        bg: '$accent1Hovered',
       }),
     },
     secondary: {
-      backgroundColor: '$accent2',
+      bg: '$accent2',
       hoverStyle: {
-        backgroundColor: '$accent2Hovered',
+        bg: '$accent2Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$accent2Hovered',
+        bg: '$accent2Hovered',
         ...brandedFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
-        backgroundColor: '$accent2Hovered',
+        bg: '$accent2Hovered',
       }),
     },
     tertiary: {
@@ -99,7 +99,7 @@ export const variantEmphasisHash: ButtonStyleLookup = {
         borderColor: '$accent2Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$surface1',
+        bg: '$surface1',
         ...brandedFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
@@ -108,9 +108,9 @@ export const variantEmphasisHash: ButtonStyleLookup = {
     },
     'text-only': {
       borderColor: '$transparent',
-      backgroundColor: '$transparent',
+      bg: '$transparent',
       focusVisibleStyle: {
-        backgroundColor: '$surface1',
+        bg: '$surface1',
         ...brandedFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
@@ -120,29 +120,29 @@ export const variantEmphasisHash: ButtonStyleLookup = {
   },
   critical: {
     primary: {
-      backgroundColor: '$statusCritical',
+      bg: '$statusCritical',
       hoverStyle: {
-        backgroundColor: '$statusCriticalHovered',
+        bg: '$statusCriticalHovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$statusCriticalHovered',
+        bg: '$statusCriticalHovered',
         ...criticalFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
-        backgroundColor: '$statusCriticalHovered',
+        bg: '$statusCriticalHovered',
       }),
     },
     secondary: {
-      backgroundColor: '$statusCritical2',
+      bg: '$statusCritical2',
       hoverStyle: {
-        backgroundColor: '$statusCritical2Hovered',
+        bg: '$statusCritical2Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$statusCritical2Hovered',
+        bg: '$statusCritical2Hovered',
         ...criticalFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
-        backgroundColor: '$statusCritical2Hovered',
+        bg: '$statusCritical2Hovered',
       }),
     },
     tertiary: {
@@ -151,7 +151,7 @@ export const variantEmphasisHash: ButtonStyleLookup = {
         borderColor: '$statusCritical2Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$surface1',
+        bg: '$surface1',
         ...criticalFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
@@ -168,29 +168,29 @@ export const variantEmphasisHash: ButtonStyleLookup = {
   },
   warning: {
     primary: {
-      backgroundColor: '$statusWarning',
+      bg: '$statusWarning',
       hoverStyle: {
-        backgroundColor: '$statusWarningHovered',
+        bg: '$statusWarningHovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$statusWarningHovered',
+        bg: '$statusWarningHovered',
         ...warningFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
-        backgroundColor: '$statusWarningHovered',
+        bg: '$statusWarningHovered',
       }),
     },
     secondary: {
-      backgroundColor: '$statusWarning2',
+      bg: '$statusWarning2',
       hoverStyle: {
-        backgroundColor: '$statusWarning2Hovered',
+        bg: '$statusWarning2Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$statusWarning2Hovered',
+        bg: '$statusWarning2Hovered',
         ...warningFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({
-        backgroundColor: '$statusWarning2Hovered',
+        bg: '$statusWarning2Hovered',
       }),
     },
     tertiary: {
@@ -199,7 +199,7 @@ export const variantEmphasisHash: ButtonStyleLookup = {
         borderColor: '$statusWarning2Hovered',
       },
       focusVisibleStyle: {
-        backgroundColor: '$surface1',
+        bg: '$surface1',
         ...warningFocusVisibleStyle,
       },
       pressStyle: withCommonPressStyle({

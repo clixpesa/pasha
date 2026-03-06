@@ -1,4 +1,4 @@
-import { SpinningLoader } from '@/ui/loading/SpinningLoader'
+import { SpinningLoader } from '@/ui/components/loading/SpinningLoader'
 import { useStyle } from 'tamagui'
 import { useIconSizes } from '../hooks/useIconSizes'
 import type { ButtonVariantProps } from '../types'

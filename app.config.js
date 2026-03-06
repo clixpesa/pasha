@@ -1,6 +1,6 @@
 const EAS_UPDATE_URL =
-  "https://u.expo.dev/b6c6e91a-96d7-47ea-97be-9f396c1f0710";
-const EAS_PROJECT_ID = "b6c6e91a-96d7-47ea-97be-9f396c1f0710";
+  "https://u.expo.dev/2f1f6211-c99a-46e1-b88d-1b6891e135a7";
+const EAS_PROJECT_ID = "2f1f6211-c99a-46e1-b88d-1b6891e135a7";
 const EAS_APP_OWNER = "kachdn";
 
 const IS_DEV = process.env.APP_VARIANT === "development";
@@ -26,9 +26,9 @@ export default {
       },
       edgeToEdgeEnabled: true,
       package: IS_DEV ? "com.pasha.app.test" : "com.pasha.app",
-      googleServicesFile: IS_DEV
+      /*googleServicesFile: IS_DEV
         ? "./google-services.test.json"
-        : "./google-services.prod.json",
+        : "./google-services.prod.json",*/
       intentFilters: [
         {
           action: "VIEW",
@@ -53,7 +53,7 @@ export default {
     plugins: [
       "expo-router",
       "expo-secure-store",
-      "expo-notifications",
+      //"expo-notifications",
       //"@react-native-firebase/app",
       //"@react-native-firebase/auth",
       //"@react-native-google-signin/google-signin",
@@ -77,12 +77,6 @@ export default {
             "./ui/assets/fonts/InputMono-Regular.ttf",
             "./ui/assets/fonts/SpaceMono-Regular.ttf",
           ],
-        },
-      ],
-      [
-        "react-native-bottom-tabs",
-        {
-          theme: "material3",
         },
       ],
       [

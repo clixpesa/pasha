@@ -1,5 +1,5 @@
 import { Flex } from '@/ui/components/layout/Flex';
-import { SkeletonProps } from '@/ui/loading/SkeletonProps';
+import { SkeletonProps } from '@/ui/components/loading/SkeletonProps';
 import MaskedView from '@react-native-masked-view/masked-view';
 import { SetStateAction, useLayoutEffect, useState } from 'react';
 import { LayoutRectangle, StyleSheet } from 'react-native';
