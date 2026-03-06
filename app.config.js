@@ -53,7 +53,7 @@ export default {
     plugins: [
       "expo-router",
       "expo-secure-store",
-      "expo-notifications",
+      //"expo-notifications",
       //"@react-native-firebase/app",
       //"@react-native-firebase/auth",
       //"@react-native-google-signin/google-signin",

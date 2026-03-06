@@ -1,7 +1,7 @@
 import { Flex } from '@/ui/components/layout'
 import { HiddenFromScreenReaders } from '@/ui/components/text/HiddenFromScreenReaders'
 import { useEnableFontScaling } from '@/ui/components/text/useEnableFontScaling'
-import { Skeleton } from '@/ui/loading/Skeleton'
+import { Skeleton } from '@/ui/components/loading/Skeleton'
 import { fonts } from '@/ui/theme/fonts'
 import { isWeb } from '@/utilities/platform'
 import { PropsWithChildren } from 'react'

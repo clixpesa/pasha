@@ -1,4 +1,4 @@
-import { SkeletonProps } from '@/ui/loading/SkeletonProps'
+import { SkeletonProps } from '@/ui/components/loading/SkeletonProps'
 import { PlatformSplitStubError } from '@/utilities/errors'
 
 export function Skeleton(_props: SkeletonProps): JSX.Element {
