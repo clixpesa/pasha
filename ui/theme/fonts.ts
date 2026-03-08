@@ -110,14 +110,14 @@ export const fonts = {
     maxFontSizeMultiplier: 1.2,
     letterSpacing: '-0.5%',
   },
-  subheading1: {
+  subHeading1: {
     family: platformFontFamily('book'),
     fontSize: adjustedSize(18),
     lineHeight: 24,
     fontWeight: BOOK_WEIGHT,
     maxFontSizeMultiplier: 1.4,
   },
-  subheading2: {
+  subHeading2: {
     family: platformFontFamily('book'),
     fontSize: adjustedSize(16),
     lineHeight: 20,
@@ -217,15 +217,15 @@ export const subHeadingFont = createFont({
   family: baselBook,
   ...(isAndroid ? { face } : null),
   size: {
-    sm: fonts.subheading2.fontSize,
-    lg: fonts.subheading1.fontSize,
-    true: fonts.subheading1.fontSize,
+    sm: fonts.subHeading2.fontSize,
+    lg: fonts.subHeading1.fontSize,
+    true: fonts.subHeading1.fontSize,
   },
   weight: defaultWeights,
   lineHeight: {
-    sm: fonts.subheading2.lineHeight,
-    lg: fonts.subheading1.lineHeight,
-    true: fonts.subheading1.lineHeight,
+    sm: fonts.subHeading2.lineHeight,
+    lg: fonts.subHeading1.lineHeight,
+    true: fonts.subHeading1.lineHeight,
   },
 })
 

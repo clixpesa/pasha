@@ -4,7 +4,7 @@ import { useEnableFontScaling } from '@/ui/components/text/useEnableFontScaling'
 import { Skeleton } from '@/ui/components/loading/Skeleton'
 import { fonts } from '@/ui/theme/fonts'
 import { isWeb } from '@/utilities/platform'
-import { PropsWithChildren } from 'react'
+import React, { PropsWithChildren } from 'react'
 import { GetProps, styled, Text as TamaguiText } from 'tamagui'
 
 export const TextFrame = styled(TamaguiText, {
@@ -34,19 +34,19 @@ export const TextFrame = styled(TamaguiText, {
         fontWeight: '$rg',
         maxFontSizeMultiplier: fonts.heading3.maxFontSizeMultiplier,
       },
-      subheading1: {
+      subHeading1: {
         fontFamily: '$subHeading',
         fontSize: '$lg',
         lineHeight: '$lg',
         fontWeight: '$md',
-        maxFontSizeMultiplier: fonts.subheading1.maxFontSizeMultiplier,
+        maxFontSizeMultiplier: fonts.subHeading1.maxFontSizeMultiplier,
       },
-      subheading2: {
+      subHeading2: {
         fontFamily: '$subHeading',
         fontSize: '$sm',
         lineHeight: '$sm',
         fontWeight: '$md',
-        maxFontSizeMultiplier: fonts.subheading2.maxFontSizeMultiplier,
+        maxFontSizeMultiplier: fonts.subHeading2.maxFontSizeMultiplier,
       },
       body1: {
         fontFamily: '$body',
@@ -152,7 +152,7 @@ export type TextProps = TextFrameProps & {
 // Use this text component throughout the app instead of
 // Default RN Text for theme support
 
-export const TextPlaceholder = ({ children }: PropsWithChildren<unknown>): JSX.Element => {
+export const TextPlaceholder = ({ children }: PropsWithChildren<unknown>): React.JSX.Element => {
   return (
     <Flex row items="center" testID="text-placeholder">
       <Flex row items="center" position="relative">
@@ -174,7 +174,7 @@ export const TextPlaceholder = ({ children }: PropsWithChildren<unknown>): JSX.E
 export const TextLoaderWrapper = ({
   children,
   loadingShimmer,
-}: { loadingShimmer?: boolean } & PropsWithChildren<unknown>): JSX.Element => {
+}: { loadingShimmer?: boolean } & PropsWithChildren<unknown>): React.JSX.Element => {
   const inner = <TextPlaceholder>{children}</TextPlaceholder>
   if (loadingShimmer) {
     return <Skeleton>{inner}</Skeleton>

@@ -75,7 +75,7 @@ export {
 	type IconButtonProps,
 } from "./components/buttons/IconButton/IconButton";
 //export * from "./components/buttons/IconButton/PlusMinusButton";
-//export * from "./components/input";
+export * from "./components/input";
 //export { QRCodeDisplay } from "./components/QRcode/QRCodeDisplay";
 //export { Switch } from "./components/switch/Switch";
 export * from "./components/text";

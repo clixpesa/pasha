@@ -47,7 +47,7 @@ function AppOuter(): React.JSX.Element | null {
 
 function AppInner(): React.JSX.Element {
 	const colors = useThemeColors();
-	const hasAccount = true//useHasAccount();
+	const hasAccount = false//useHasAccount();
 	const isUnlocked = true//
   return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: colors.background.val }} edges={{
