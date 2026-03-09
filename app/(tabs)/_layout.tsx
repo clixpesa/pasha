@@ -59,16 +59,7 @@ export default function TabLayout() {
 							: require("@/ui/assets/images/nav-icons/bubble-line.svg"),
 				}}
 			/>
-			<Tabs.Screen
-				name="account"
-				options={{
-					title: "Account",
-					tabBarIcon: ({ focused }) =>
-						focused
-							? require("@/ui/assets/images/nav-icons/user-fill.svg")
-							: require("@/ui/assets/images/nav-icons/user-line.svg"),
-				}}
-			/>
+			
 			<Tabs.Screen
 				name="invest"
 				options={{
@@ -77,6 +68,16 @@ export default function TabLayout() {
 						require("@/ui/assets/images/nav-icons/barchart-fill.svg") : 
 						require("@/ui/assets/images/nav-icons/barchart-line.svg")
 					),
+				}}
+			/>
+			<Tabs.Screen
+				name="account"
+				options={{
+					title: "Account",
+					tabBarIcon: ({ focused }) =>
+						focused
+							? require("@/ui/assets/images/nav-icons/user-fill.svg")
+							: require("@/ui/assets/images/nav-icons/user-line.svg"),
 				}}
 			/>
 			{/*<Tabs.Screen

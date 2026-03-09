@@ -1,6 +1,7 @@
 import { useFonts } from "expo-font";
 import { useAppState, useHasAccount } from "@/features/essentials/appState";
 import { TestnetModeBanner } from "@/features/essentials";
+import { WalletContextProvider } from "@/features/wallet";
 import { store } from "@/store/redux";
 import { UIProvider, useThemeColors } from "@/ui";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -53,7 +54,7 @@ function AppOuter(): React.JSX.Element | null {
 function AppInner(): React.JSX.Element {
 	const colors = useThemeColors();
 	const segments = useSegments();
-	const hasAccount = false//useHasAccount();
+	const hasAccount = useHasAccount();
 	const isUnlocked = true
 	useEffect(() => {
 		if (!hasAccount) {
@@ -73,7 +74,9 @@ function AppInner(): React.JSX.Element {
 				<Stack.Screen name="(auth)" options={{ headerShown: false }}/>
 				<Stack.Screen name="+not-found"/>
 			</Stack> ) : (
+				<WalletContextProvider>
 				<Slot />
+				</WalletContextProvider>
 			)}
       
 		</SafeAreaView>

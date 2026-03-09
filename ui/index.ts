@@ -80,11 +80,11 @@ export * from "./components/input";
 //export { Switch } from "./components/switch/Switch";
 export * from "./components/text";
 export * from "./components/touchable";
-//export { Unicon } from "./components/Unicon";
-//export * from "./components/Unicon/utils";
-//export * from "./components/UniversalImage/types";
-//export * from "./components/UniversalImage/UniversalImage";
-//export * from "./components/UniversalImage/utils";
+export { Unicon } from "./components/Unicon";
+export * from "./components/Unicon/utils";
+export * from "./components/UniversalImage/types";
+export * from "./components/UniversalImage/UniversalImage";
+export * from "./components/UniversalImage/utils";
 
 //types
 export type {
@@ -106,11 +106,11 @@ export * from "./components/layout/AnimatedStacks";
 export * from "./components/layout/Separator";
 
 //Loaders
-//export * from "./components/loading/ActivityLoader";
-//export * from "./components/loading/FlexLoader";
-//export * from "./components/loading/Loader";
-//export * from "./components/loading/NftCardLoader";
+export * from "./components/loading/ActivityLoader";
+export * from "./components/loading/FlexLoader";
+export * from "./components/loading/Loader";
+export * from "./components/loading/NftCardLoader";
 export * from "./components/loading/Shine";
 export * from "./components/loading/Skeleton";
 export * from "./components/loading/SpinningLoader";
-//export * from "./components/loading/TransactionLoader";
+export * from "./components/loading/TransactionLoader";
