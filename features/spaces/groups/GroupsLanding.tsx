@@ -101,11 +101,7 @@ export function GroupsLanding() {
 							</Stack>
 						</XStack>
 					</YStack>
-					<TouchableArea
-						onPress={() =>
-							openBrowserAsync("https://clixpesa.com/feature/roscas")
-						}
-					>
+					<TouchableArea onPress={() => console.log("explainer")}>
 						<XStack items="center" gap="$xs" mt="$md">
 							<Text variant="subHeading1" color="$accent1">
 								Learn more

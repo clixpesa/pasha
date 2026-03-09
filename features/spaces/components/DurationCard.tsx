@@ -160,7 +160,7 @@ export const DurationCard = ({
 		<XStack justify="space-between" items="center" width="100%">
 			<YStack>
 				<Text
-					fontSize={fonts.subheading1.fontSize + 4}
+					fontSize={fonts.subHeading1.fontSize + 4}
 					lineHeight={26}
 					color={isSelected ? "$accent1" : "$neutral1"}
 				>

@@ -109,11 +109,7 @@ export function SavingsLanding() {
 							</Stack>
 						</XStack>
 					</YStack>
-					<TouchableArea
-						onPress={() =>
-							openBrowserAsync("https://clixpesa.com/feature/savings")
-						}
-					>
+					<TouchableArea onPress={() => console.log("saving explanation")}>
 						<XStack items="center" gap="$xs" mt="$md">
 							<Text variant="subHeading1" color="$accent1">
 								Learn more
