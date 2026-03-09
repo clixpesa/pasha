@@ -1,7 +1,7 @@
+import { IconProps } from '@/ui/components/factories/createIcon'
 import { memo } from 'react'
 import { I18nManager } from 'react-native'
 import { ColorTokens, Stack, StackProps } from 'tamagui'
-import { IconProps } from '../factories/createIcon'
 import { Chevron } from './Chevron'
 
 type Props = {
@@ -9,8 +9,8 @@ type Props = {
   height?: string | number
   direction?: 'up' | 'right' | 'down' | 'left' | 'start' | 'end'
   color?: ColorTokens
-} & Omit<StackProps, 'direction' | '$group-item-hover'> &
-  Pick<IconProps, '$group-item-hover'>
+} & Omit<StackProps, 'direction' | '$group-hover'> &
+  Pick<IconProps, '$group-hover'>
 
 function _RotatableChevron({
   color,
@@ -47,7 +47,7 @@ function _RotatableChevron({
   return (
     <Stack items="center" rounded="$full" rotate={degree} animation={animation} {...rest}>
       {/* @ts-expect-error TODO(MOB-1570) this works but we should migrate to size prop */}
-      <Chevron $group-item-hover={$groupItemHover} color={color} height={height} width={width} />
+      <Chevron $group-hover={$groupItemHover} color={color} height={height} width={width} />
     </Stack>
   )
 }
