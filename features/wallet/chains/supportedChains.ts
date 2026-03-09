@@ -115,16 +115,16 @@ export const supportedChains: Record<ChainId, ChainInfo> = {
 		contracts: {
 			...avalanche.contracts,
 			overdraft: {
-				address: "0x3ff87826d81296fBf7d9DecfC43b1e6b20a151a1",
-				blockCreated: 52535250,
+				address: "0x1463090d955f0f731A2D810F98702400dB3da29A",
+				blockCreated: 52544288,
 			},
 			goalSavings: {
-				address: "0xA8bd226aD6E2714D816adECB6C3D7C4CF884285d",
-				blockCreated: 51359990,
+				address: "0xA2bf97c4b85Ae50e89297Cb4b73E502F3E06A173",
+				blockCreated: 52543226,
 			},
 			roscas: {
-				address: "0x2A5Be2d605Ca47E77b0Be0916dce86B781DA2371",
-				blockCreated: 51581712,
+				address: "0x0c55b35008Ec5D5fceCb8ADB396fF35c84D9eFC9",
+				blockCreated: 52543818,
 			},
 		},
 		logo: require("@/ui/assets/images/network-logos/avalanche-logo.png"),
