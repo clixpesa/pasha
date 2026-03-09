@@ -1,4 +1,6 @@
 import { useFonts } from "expo-font";
+import { useAppState, useHasAccount } from "@/features/essentials/appState";
+import { TestnetModeBanner } from "@/features/essentials";
 import { store } from "@/store/redux";
 import { UIProvider, useThemeColors } from "@/ui";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
@@ -7,8 +9,10 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider } from "react-redux";
 import { Slot, Stack, router, useSegments } from "expo-router";
 import { useEffect } from "react";
+import "@/features/utils/shims";
 
 export default function RootLayout() {
+	const hasAccount = useAppState((s) => s.hasAccount);
   const [loaded] = useFonts({
 		SpaceMono: require("@/ui/assets/fonts/SpaceMono-Regular.ttf"),
 		InputMono: require("@/ui/assets/fonts/InputMono-Regular.ttf"),
@@ -18,7 +22,7 @@ export default function RootLayout() {
 		InterSemiBold: require("@/ui/assets/fonts/Inter-SemiBold.ttf"),
 	});
 
-  if (!loaded) {
+  if (!loaded && hasAccount !== null) {
 		// Async font loading only occurs in development.
 		return null;
 	}
@@ -64,7 +68,7 @@ function AppInner(): React.JSX.Element {
 			top: "additive",
 			bottom: "off"
 		}}>
-
+			<TestnetModeBanner />
 			{inAuthRoute ? (<Stack>
 				<Stack.Screen name="(auth)" options={{ headerShown: false }}/>
 				<Stack.Screen name="+not-found"/>

@@ -1,12 +1,16 @@
 import { Stack } from "expo-router";
+import { OnboardingContextProvider } from "@/features/essentials";
 
 export default function AuthLayout() {
+
 	return (
+    <OnboardingContextProvider>
     <Stack screenOptions={{ headerShown: false }} >
 			<Stack.Screen name="sign-in"  />
 			<Stack.Screen name="verify" />
 			<Stack.Screen name="username" />
       <Stack.Screen name="security" />
     </Stack>
+    </OnboardingContextProvider>
   )
 }

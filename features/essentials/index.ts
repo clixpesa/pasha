@@ -5,7 +5,7 @@ export * from "./components/GoogleSignIn";
 //export * from "./components/ProductsCard";
 export * from "./components/ResendTimer";
 export * from "./components/TermsContent";
-//export * from "./components/TestnetModeBanner";
+export * from "./components/TestnetModeBanner";
 //export * from "./components/TransactionsCard";
 
 //hooks
