@@ -6,6 +6,7 @@ import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Provider } from "react-redux";
 import { Slot, Stack, router, useSegments } from "expo-router";
+import { useEffect } from "react";
 
 export default function RootLayout() {
   const [loaded] = useFonts({
@@ -47,23 +48,30 @@ function AppOuter(): React.JSX.Element | null {
 
 function AppInner(): React.JSX.Element {
 	const colors = useThemeColors();
+	const segments = useSegments();
 	const hasAccount = false//useHasAccount();
-	const isUnlocked = true//
+	const isUnlocked = true
+	useEffect(() => {
+		if (!hasAccount) {
+			router.replace("/(auth)/sign-in");
+		} else if (hasAccount && !isUnlocked) {
+			router.replace("/(auth)/unlock");
+		}
+	}, [hasAccount, isUnlocked]);
+	const inAuthRoute = segments[0] === "(auth)";
   return (
 		<SafeAreaView style={{ flex: 1, backgroundColor: colors.background.val }} edges={{
 			top: "additive",
 			bottom: "off"
 		}}>
-			<Stack>
-			<Stack.Protected guard={!hasAccount || !isUnlocked}>
+
+			{inAuthRoute ? (<Stack>
 				<Stack.Screen name="(auth)" options={{ headerShown: false }}/>
 				<Stack.Screen name="+not-found"/>
-			</Stack.Protected>
-      <Stack.Protected guard={hasAccount && isUnlocked}>
-				<Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
-				<Stack.Screen name="+not-found"/>
-			</Stack.Protected>
-			</Stack>
+			</Stack> ) : (
+				<Slot />
+			)}
+      
 		</SafeAreaView>
 	);
 }
