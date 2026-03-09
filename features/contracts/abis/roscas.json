@@ -1,1374 +1,1385 @@
 [
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "_roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "address",
-				"name": "_member",
-				"type": "address"
-			}
-		],
-		"name": "addMember",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"stateMutability": "nonpayable",
-		"type": "constructor"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "target",
-				"type": "address"
-			}
-		],
-		"name": "AddressEmptyCode",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_AlreadyMember",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_ExpiredStartDate",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_InsufficientBalance",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_MustBeMoreThanZero",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_NotAMmeber",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_RoscaFull",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_RoscaNotFound",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_RoscaTooBig",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_SlotIsActive",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_SlotIsFullyFunded",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_SlotIsPaid",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_SlotIsTaken",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "CR_SmallInterval",
-		"type": "error"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "implementation",
-				"type": "address"
-			}
-		],
-		"name": "ERC1967InvalidImplementation",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "ERC1967NonPayable",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "FailedCall",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "InvalidInitialization",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "NotInitializing",
-		"type": "error"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			}
-		],
-		"name": "OwnableInvalidOwner",
-		"type": "error"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "account",
-				"type": "address"
-			}
-		],
-		"name": "OwnableUnauthorizedAccount",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "ReentrancyGuardReentrantCall",
-		"type": "error"
-	},
-	{
-		"inputs": [],
-		"name": "UUPSUnauthorizedCallContext",
-		"type": "error"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes32",
-				"name": "slot",
-				"type": "bytes32"
-			}
-		],
-		"name": "UUPSUnsupportedProxiableUUID",
-		"type": "error"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint8",
-				"name": "slotId",
-				"type": "uint8"
-			},
-			{
-				"indexed": false,
-				"internalType": "uint256",
-				"name": "time",
-				"type": "uint256"
-			}
-		],
-		"name": "ActiveSlotUpdated",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "_roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_slotId",
-				"type": "uint8"
-			}
-		],
-		"name": "changeSlot",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "_token",
-				"type": "address"
-			},
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "payoutAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "memberCount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "interaval",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "startDate",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct ClixpesaRoscas.SlotInfo",
-				"name": "_slotInfo",
-				"type": "tuple"
-			}
-		],
-		"name": "createRosca",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "_roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "string",
-				"name": "_name",
-				"type": "string"
-			}
-		],
-		"name": "editRosca",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "_roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "bool",
-				"name": "_isInDefault",
-				"type": "bool"
-			}
-		],
-		"name": "fundSlot",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "initialize",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": false,
-				"internalType": "uint64",
-				"name": "version",
-				"type": "uint64"
-			}
-		],
-		"name": "Initialized",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "_roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "joinRosca",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "previousOwner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "OwnershipTransferred",
-		"type": "event"
-	},
-	{
-		"inputs": [],
-		"name": "renounceOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "RoscaCreated",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "RoscaEdited",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "RoscaJoined",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "_roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "uint8",
-				"name": "_slotId",
-				"type": "uint8"
-			}
-		],
-		"name": "selectSlot",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint8",
-				"name": "slotId",
-				"type": "uint8"
-			}
-		],
-		"name": "SlotChanged",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint8",
-				"name": "slotId",
-				"type": "uint8"
-			}
-		],
-		"name": "SlotDefaulted",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint8",
-				"name": "slotId",
-				"type": "uint8"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			}
-		],
-		"name": "SlotFunded",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint8",
-				"name": "slotId",
-				"type": "uint8"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": false,
-				"internalType": "string",
-				"name": "token",
-				"type": "string"
-			},
-			{
-				"indexed": false,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			}
-		],
-		"name": "SlotPaidOut",
-		"type": "event"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint8",
-				"name": "slotId",
-				"type": "uint8"
-			}
-		],
-		"name": "SlotSelected",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "_to",
-				"type": "address"
-			},
-			{
-				"internalType": "address",
-				"name": "_token",
-				"type": "address"
-			}
-		],
-		"name": "superWithdraw",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"indexed": true,
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "to",
-				"type": "address"
-			}
-		],
-		"name": "SuperWithdrawn",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newOwner",
-				"type": "address"
-			}
-		],
-		"name": "transferOwnership",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "updateActiveSlots",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"anonymous": false,
-		"inputs": [
-			{
-				"indexed": true,
-				"internalType": "address",
-				"name": "implementation",
-				"type": "address"
-			}
-		],
-		"name": "Upgraded",
-		"type": "event"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "newImplementation",
-				"type": "address"
-			},
-			{
-				"internalType": "bytes",
-				"name": "data",
-				"type": "bytes"
-			}
-		],
-		"name": "upgradeToAndCall",
-		"outputs": [],
-		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "_roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "withdrawSlot",
-		"outputs": [],
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "activeSlot",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "id",
-				"type": "uint8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "payoutAmount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "payoutDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "paidOut",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "allRoscas",
-		"outputs": [
-			{
-				"internalType": "bytes8",
-				"name": "",
-				"type": "bytes8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "defaultedSlot",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "id",
-				"type": "uint8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "payoutAmount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "payoutDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "paidOut",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "getAllRoscas",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "bytes8",
-						"name": "id",
-						"type": "bytes8"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					},
-					{
-						"internalType": "contract IERC20Upgradeable",
-						"name": "token",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "totalBalance",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "yield",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "loan",
-						"type": "uint256"
-					},
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "payoutAmount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "memberCount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "interaval",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "startDate",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct ClixpesaRoscas.SlotInfo",
-						"name": "slotInfo",
-						"type": "tuple"
-					}
-				],
-				"internalType": "struct ClixpesaRoscas.Rosca[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "getRoscaMembers",
-		"outputs": [
-			{
-				"internalType": "address[]",
-				"name": "",
-				"type": "address[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "getRoscaSlots",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "uint8",
-						"name": "id",
-						"type": "uint8"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "payoutAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "payoutDate",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"internalType": "bool",
-						"name": "paidOut",
-						"type": "bool"
-					}
-				],
-				"internalType": "struct ClixpesaRoscas.Slot[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "uint8",
-				"name": "slotId",
-				"type": "uint8"
-			}
-		],
-		"name": "getSlotPayments",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "address",
-						"name": "member",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "amount",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct ClixpesaRoscas.SlotPayments[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "user",
-				"type": "address"
-			}
-		],
-		"name": "getUserRoscas",
-		"outputs": [
-			{
-				"components": [
-					{
-						"internalType": "bytes8",
-						"name": "id",
-						"type": "bytes8"
-					},
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "admin",
-						"type": "address"
-					},
-					{
-						"internalType": "contract IERC20Upgradeable",
-						"name": "token",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "totalBalance",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "yield",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "loan",
-						"type": "uint256"
-					},
-					{
-						"components": [
-							{
-								"internalType": "uint256",
-								"name": "payoutAmount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "memberCount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "interaval",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "startDate",
-								"type": "uint256"
-							}
-						],
-						"internalType": "struct ClixpesaRoscas.SlotInfo",
-						"name": "slotInfo",
-						"type": "tuple"
-					}
-				],
-				"internalType": "struct ClixpesaRoscas.Rosca[]",
-				"name": "",
-				"type": "tuple[]"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"name": "isMember",
-		"outputs": [
-			{
-				"internalType": "bool",
-				"name": "",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "members",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "owner",
-		"outputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "proxiableUUID",
-		"outputs": [
-			{
-				"internalType": "bytes32",
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "roscas",
-		"outputs": [
-			{
-				"internalType": "bytes8",
-				"name": "id",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "admin",
-				"type": "address"
-			},
-			{
-				"internalType": "contract IERC20Upgradeable",
-				"name": "token",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "totalBalance",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "yield",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "loan",
-				"type": "uint256"
-			},
-			{
-				"components": [
-					{
-						"internalType": "uint256",
-						"name": "payoutAmount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "memberCount",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "interaval",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "startDate",
-						"type": "uint256"
-					}
-				],
-				"internalType": "struct ClixpesaRoscas.SlotInfo",
-				"name": "slotInfo",
-				"type": "tuple"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "roscaSlots",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "id",
-				"type": "uint8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "payoutAmount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "payoutDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "paidOut",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			},
-			{
-				"internalType": "uint8",
-				"name": "slotId",
-				"type": "uint8"
-			},
-			{
-				"internalType": "address",
-				"name": "member",
-				"type": "address"
-			}
-		],
-		"name": "slotPayments",
-		"outputs": [
-			{
-				"internalType": "uint256",
-				"name": "payment",
-				"type": "uint256"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [],
-		"name": "UPGRADE_INTERFACE_VERSION",
-		"outputs": [
-			{
-				"internalType": "string",
-				"name": "",
-				"type": "string"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "userRoscas",
-		"outputs": [
-			{
-				"internalType": "bytes8",
-				"name": "",
-				"type": "bytes8"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"inputs": [
-			{
-				"internalType": "address",
-				"name": "",
-				"type": "address"
-			},
-			{
-				"internalType": "bytes8",
-				"name": "roscaId",
-				"type": "bytes8"
-			}
-		],
-		"name": "userSlot",
-		"outputs": [
-			{
-				"internalType": "uint8",
-				"name": "id",
-				"type": "uint8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "payoutAmount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "payoutDate",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "owner",
-				"type": "address"
-			},
-			{
-				"internalType": "bool",
-				"name": "paidOut",
-				"type": "bool"
-			}
-		],
-		"stateMutability": "view",
-		"type": "function"
-	}
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "_roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "address",
+        "name": "_member",
+        "type": "address"
+      }
+    ],
+    "name": "addMember",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      }
+    ],
+    "name": "AddressEmptyCode",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_AlreadyMember",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_ExpiredStartDate",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_InsufficientBalance",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_MustBeMoreThanZero",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_NotAMmeber",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_RoscaFull",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_RoscaNotFound",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_RoscaTooBig",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_SlotIsActive",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_SlotIsFullyFunded",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_SlotIsPaid",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_SlotIsTaken",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "CR_SmallInterval",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "ERC1967InvalidImplementation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ERC1967NonPayable",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "FailedCall",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "InvalidInitialization",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "NotInitializing",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableInvalidOwner",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "account",
+        "type": "address"
+      }
+    ],
+    "name": "OwnableUnauthorizedAccount",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "ReentrancyGuardReentrantCall",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "token",
+        "type": "address"
+      }
+    ],
+    "name": "SafeERC20FailedOperation",
+    "type": "error"
+  },
+  {
+    "inputs": [],
+    "name": "UUPSUnauthorizedCallContext",
+    "type": "error"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes32",
+        "name": "slot",
+        "type": "bytes32"
+      }
+    ],
+    "name": "UUPSUnsupportedProxiableUUID",
+    "type": "error"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "slotId",
+        "type": "uint8"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "time",
+        "type": "uint256"
+      }
+    ],
+    "name": "ActiveSlotUpdated",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "_roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "_slotId",
+        "type": "uint8"
+      }
+    ],
+    "name": "changeSlot",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "_token",
+        "type": "address"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "payoutAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "memberCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "interaval",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ClixpesaRoscas.SlotInfo",
+        "name": "_slotInfo",
+        "type": "tuple"
+      }
+    ],
+    "name": "createRosca",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "_roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "string",
+        "name": "_name",
+        "type": "string"
+      }
+    ],
+    "name": "editRosca",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "_roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isInDefault",
+        "type": "bool"
+      }
+    ],
+    "name": "fundSlot",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint64",
+        "name": "version",
+        "type": "uint64"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "_roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "joinRosca",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "RoscaCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "RoscaEdited",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "RoscaJoined",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "_roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "_slotId",
+        "type": "uint8"
+      }
+    ],
+    "name": "selectSlot",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "slotId",
+        "type": "uint8"
+      }
+    ],
+    "name": "SlotChanged",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "slotId",
+        "type": "uint8"
+      }
+    ],
+    "name": "SlotDefaulted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "slotId",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "SlotFunded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "slotId",
+        "type": "uint8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "string",
+        "name": "token",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "SlotPaidOut",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint8",
+        "name": "slotId",
+        "type": "uint8"
+      }
+    ],
+    "name": "SlotSelected",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "_to",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_token",
+        "type": "address"
+      }
+    ],
+    "name": "superWithdraw",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "to",
+        "type": "address"
+      }
+    ],
+    "name": "SuperWithdrawn",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "updateActiveSlots",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "implementation",
+        "type": "address"
+      }
+    ],
+    "name": "Upgraded",
+    "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newImplementation",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes",
+        "name": "data",
+        "type": "bytes"
+      }
+    ],
+    "name": "upgradeToAndCall",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "_roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "withdrawSlot",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "activeSlot",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "id",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutDate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "paidOut",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "allRoscas",
+    "outputs": [
+      {
+        "internalType": "bytes8",
+        "name": "",
+        "type": "bytes8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "defaultedSlot",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "id",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutDate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "paidOut",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "getAllRoscas",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes8",
+            "name": "id",
+            "type": "bytes8"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "admin",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "yield",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "loan",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "payoutAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "memberCount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "interaval",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "startDate",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ClixpesaRoscas.SlotInfo",
+            "name": "slotInfo",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct ClixpesaRoscas.Rosca[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "getRoscaMembers",
+    "outputs": [
+      {
+        "internalType": "address[]",
+        "name": "",
+        "type": "address[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "getRoscaSlots",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "uint8",
+            "name": "id",
+            "type": "uint8"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "payoutAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "payoutDate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+          },
+          {
+            "internalType": "bool",
+            "name": "paidOut",
+            "type": "bool"
+          }
+        ],
+        "internalType": "struct ClixpesaRoscas.Slot[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "slotId",
+        "type": "uint8"
+      }
+    ],
+    "name": "getSlotPayments",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "member",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ClixpesaRoscas.SlotPayments[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "user",
+        "type": "address"
+      }
+    ],
+    "name": "getUserRoscas",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "bytes8",
+            "name": "id",
+            "type": "bytes8"
+          },
+          {
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "admin",
+            "type": "address"
+          },
+          {
+            "internalType": "contract IERC20",
+            "name": "token",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalBalance",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "yield",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "loan",
+            "type": "uint256"
+          },
+          {
+            "components": [
+              {
+                "internalType": "uint256",
+                "name": "payoutAmount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "memberCount",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "interaval",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "startDate",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct ClixpesaRoscas.SlotInfo",
+            "name": "slotInfo",
+            "type": "tuple"
+          }
+        ],
+        "internalType": "struct ClixpesaRoscas.Rosca[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "name": "isMember",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "members",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "proxiableUUID",
+    "outputs": [
+      {
+        "internalType": "bytes32",
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "roscas",
+    "outputs": [
+      {
+        "internalType": "bytes8",
+        "name": "id",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "string",
+        "name": "name",
+        "type": "string"
+      },
+      {
+        "internalType": "address",
+        "name": "admin",
+        "type": "address"
+      },
+      {
+        "internalType": "contract IERC20",
+        "name": "token",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "totalBalance",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "yield",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "loan",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "uint256",
+            "name": "payoutAmount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "memberCount",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "interaval",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "startDate",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct ClixpesaRoscas.SlotInfo",
+        "name": "slotInfo",
+        "type": "tuple"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "roscaSlots",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "id",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutDate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "paidOut",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      },
+      {
+        "internalType": "uint8",
+        "name": "slotId",
+        "type": "uint8"
+      },
+      {
+        "internalType": "address",
+        "name": "member",
+        "type": "address"
+      }
+    ],
+    "name": "slotPayments",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "payment",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "UPGRADE_INTERFACE_VERSION",
+    "outputs": [
+      {
+        "internalType": "string",
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "userRoscas",
+    "outputs": [
+      {
+        "internalType": "bytes8",
+        "name": "",
+        "type": "bytes8"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      },
+      {
+        "internalType": "bytes8",
+        "name": "roscaId",
+        "type": "bytes8"
+      }
+    ],
+    "name": "userSlot",
+    "outputs": [
+      {
+        "internalType": "uint8",
+        "name": "id",
+        "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutAmount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "payoutDate",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "paidOut",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
 ]
