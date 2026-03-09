@@ -23,6 +23,7 @@ import { getAuth, getIdTokenResult } from "@react-native-firebase/auth";
 import * as Clipboard from "expo-clipboard";
 import { router } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Separator } from "tamagui";
 
 export default function ReciveScreen() {
 	const user = useAppState((s) => s.user);
@@ -57,13 +58,12 @@ export default function ReciveScreen() {
 	useEffect(() => {
 		(async () => {
 			const user = getAuth().currentUser;
-			if(user){
+			if (user) {
 				const clixtag = await getIdTokenResult(user, true).then(
-				(tokenResults) => tokenResults.claims.tag,
-			);
-			setClixtag(clixtag);
+					(tokenResults) => tokenResults.claims.tag,
+				);
+				setClixtag(clixtag);
 			}
-			
 		})();
 	}, []);
 	return (
@@ -76,8 +76,8 @@ export default function ReciveScreen() {
 		>
 			<YStack gap="$md" mt="$lg" width="92%">
 				<Text text="center" px="$2xl" variant="body2">
-					Anyone with Pasha can send you cash using your phone number, tag or
-					by scanning this QR code
+					Anyone with Pasha can send you cash using your phone number, tag or by
+					scanning this QR code
 				</Text>
 				<QRCodeDisplay
 					size={200}
@@ -149,6 +149,51 @@ export default function ReciveScreen() {
 								bg="$accent2"
 								rounded="$full"
 								onPress={onOpenModal}
+							>
+								<QrCode size={22} color="$accent1" />
+							</TouchableArea>
+						</XStack>
+					</XStack>
+					<Separator borderColor="$neutral2" width="85%" self="center" />
+					<XStack items="center" justify="space-between">
+						<XStack gap="$sm">
+							<Stack
+								bg="$surface3"
+								height={42}
+								rounded="$md"
+								width={42}
+								items="center"
+								justify="center"
+							>
+								<UniversalImage
+									size={{
+										height: 32,
+										width: 32,
+									}}
+									uri={require("@/ui/assets/images/token-logos/usdc-logo.png")}
+								/>
+							</Stack>
+							<YStack gap="$2xs">
+								<Text variant="subHeading2">USD Virtual Account</Text>
+								<Text variant="body3" color="$neutral2">
+									Coming soon!
+								</Text>
+							</YStack>
+						</XStack>
+						<XStack gap="$vs">
+							<TouchableArea
+								p="$sm"
+								bg="$accent2"
+								rounded="$full"
+								onPress={() => {}}
+							>
+								<CopySheets size={22} color="$accent1" />
+							</TouchableArea>
+							<TouchableArea
+								p="$sm"
+								bg="$accent2"
+								rounded="$full"
+								onPress={() => {}}
 							>
 								<QrCode size={22} color="$accent1" />
 							</TouchableArea>
