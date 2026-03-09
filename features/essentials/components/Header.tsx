@@ -5,7 +5,7 @@ import { Text, TouchableArea, XStack } from "@/ui";
 import { router } from "expo-router";
 import { useAppState } from "../appState";
 
-export const HomeHeader = () => {
+export  const HomeHeader = () => {
 	const user = useAppState((s) => s.user);
 	const currency = useWalletState((s) => s.currency);
 	const { data, isLoading, isFetching } = useGetRateQuery(currency);
@@ -34,7 +34,7 @@ export const HomeHeader = () => {
 					fontSize="$lg"
 					color="$neutral1"
 				>
-					Clixpesa
+					Pasha
 				</Text>
 			</XStack>
 			<XStack gap="$sm" px="$sm" items="center">

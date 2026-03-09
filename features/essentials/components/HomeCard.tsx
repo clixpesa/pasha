@@ -54,7 +54,7 @@ export const HomeCard = () => {
 				},
 				chainId: defaultChainId,
 			});
-			updateOverdraft(10);
+			updateOverdraft(10, conversionRate);
 			setIsTxLoading(false);
 		} catch (error) {
 			setIsTxLoading(false);
@@ -149,7 +149,7 @@ const JazishaContent = ({
 					Finalize what you need to with Jazisha!
 				</Text>
 				<Text text="center" color="$neutral2">
-					Transfer or make a payment even on low balance with Clixpesa
+					Transfer or make a payment even on low balance with Pasha
 					Overdraft.
 				</Text>
 			</YStack>
@@ -158,7 +158,7 @@ const JazishaContent = ({
 				<Text variant="heading3" fontWeight="600">
 					{balance}/100 USD
 				</Text>
-				<Text color="$neutral2">Only on CELO</Text>
+				<Text color="$neutral2">Only on Avalanche</Text>
 			</YStack>
 			<Button
 				size="lg"
