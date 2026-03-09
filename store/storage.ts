@@ -1,9 +1,9 @@
 import * as aesjs from "aes-js";
 import * as SecureStore from "expo-secure-store";
-import { createMMKV } from "react-native-mmkv";
+import { MMKV } from "react-native-mmkv";
 import type { StateStorage } from "zustand/middleware";
 
-export const storage = createMMKV();
+export const storage = new MMKV();
 
 export const zustandMmkvStorage: StateStorage = {
 	setItem: (name: string, value: string) => {
@@ -14,7 +14,7 @@ export const zustandMmkvStorage: StateStorage = {
 		return value ?? null;
 	},
 	removeItem: (name: string) => {
-		return storage.remove(name);
+		return storage.delete(name);
 	},
 };
 
@@ -62,6 +62,6 @@ export const appStorage = {
 
 	removeItem: async (key: string): Promise<void> => {
 		await SecureStore.deleteItemAsync(key);
-		storage.remove(key);
+		storage.delete(key);
 	},
 };

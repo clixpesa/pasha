@@ -1,9 +1,8 @@
-import { cloneElement, memo } from 'react'
+import { cloneElement, JSX, memo } from 'react'
 import { useStyle } from 'tamagui'
 import { useIconSizes } from '../hooks/useIconSizes'
-import type { ButtonVariantProps } from '../types'
+import { ButtonVariantProps, TypeOfButton } from '../types'
 import { CustomButtonText } from './CustomButtonText/CustomButtonText'
-import { TypeOfButton } from './types'
 
 export type ThemedIconProps = ButtonVariantProps & {
   typeOfButton: TypeOfButton
@@ -14,7 +13,7 @@ export type ThemedIconProps = ButtonVariantProps & {
  * If this is an icon created by `createIcon`, great
  * Otherwise, if there's a wrapper, the wrapper will need to pass the props down to the icon created by `createIcon`
  */
-const _ThemedIcon = ({
+const ThemedIcon_ = ({
   children,
   size = 'md',
   variant,
@@ -51,6 +50,6 @@ const _ThemedIcon = ({
   })
 }
 
-const ThemedIcon = memo(_ThemedIcon)
+const ThemedIcon = memo(ThemedIcon_)
 
 export { ThemedIcon }

@@ -7,7 +7,7 @@ type RgbColor = `rgb(${number}, ${number}, ${number})` | `rgba(${number}, ${numb
 type HexOrRgbColor = HexColor | RgbColor
 
 export const getMaybeHexOrRGBColor = (
-  color?: string | GetThemeValueForKey<'bg'> | OpaqueColorValue,
+  color?: string | GetThemeValueForKey<'backgroundColor'> | OpaqueColorValue,
 ): HexOrRgbColor | undefined => {
   if (!color) {
     return undefined

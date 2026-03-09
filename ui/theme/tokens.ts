@@ -8,8 +8,8 @@ const fontSize = {
 	heading1: fonts.heading1.fontSize,
 	heading2: fonts.heading2.fontSize,
 	heading3: fonts.heading3.fontSize,
-	subheading1: fonts.subheading1.fontSize,
-	subheading2: fonts.subheading2.fontSize,
+	subheading1: fonts.subHeading1.fontSize,
+	subheading2: fonts.subHeading2.fontSize,
 	body1: fonts.body1.fontSize,
 	body2: fonts.body2.fontSize,
 	body3: fonts.body3.fontSize,
@@ -122,86 +122,91 @@ export const tokens = createTokens({
 // it would be a bit nicer if this was cast to Token
 // but we'd need another new Tamagui release to support that (coming soon)
 
-type ColorValue = DynamicColor | string | undefined | null
+type ColorValue = DynamicColor | string | undefined | null;
 
 // Exported for testing
 export const getIsTokenFormat = (value: string): boolean => {
-  return value[0] === '$'
-}
+	return value[0] === "$";
+};
 
 // Exported for testing
 export const getIsValidSporeColor = (value: string): boolean => {
-  if (getIsTokenFormat(value)) {
-    const valueWithout$Prefix = value.slice(1)
+	if (getIsTokenFormat(value)) {
+		const valueWithout$Prefix = value.slice(1);
 
-    // check if in color tokens or theme:
-    if (!(valueWithout$Prefix in color) && !(valueWithout$Prefix in themes.light)) {
-      return false
-    }
+		// check if in color tokens or theme:
+		if (
+			!(valueWithout$Prefix in color) &&
+			!(valueWithout$Prefix in themes.light)
+		) {
+			return false;
+		}
 
-    return true
-  }
+		return true;
+	}
 
-  return false
-}
+	return false;
+};
 
 // Exported for testing
-export const validateColorValue = (value: ColorValue): { isValid: boolean; error?: Error } => {
-  if (typeof value === 'string') {
-    if (getIsTokenFormat(value)) {
-      const isValidSporeColor = getIsValidSporeColor(value)
+export const validateColorValue = (
+	value: ColorValue,
+): { isValid: boolean; error?: Error } => {
+	if (typeof value === "string") {
+		if (getIsTokenFormat(value)) {
+			const isValidSporeColor = getIsValidSporeColor(value);
 
-      if (isValidSporeColor) {
-        return {
-          isValid: true,
-          error: undefined,
-        }
-      }
+			if (isValidSporeColor) {
+				return {
+					isValid: true,
+					error: undefined,
+				};
+			}
 
-      return {
-        isValid: true,
-        error: undefined,
-      }
-    }
+			return {
+				isValid: true,
+				error: undefined,
+			};
+		}
 
-    if (
-      value[0] !== '#' &&
-      !value.startsWith('rgb(') &&
-      !value.startsWith('rgba(') &&
-      !value.startsWith('hsl(') &&
-      !value.startsWith('hsla(') &&
-      !value.startsWith('var(')
-    ) {
-      return {
-        isValid: false,
-        error: new Error(
-          `Invalid color value: ${value} this helper just does a rough check so if this error is wrong you can update this check!`,
-        ),
-      }
-    }
-  }
+		if (
+			value[0] !== "#" &&
+			!value.startsWith("rgb(") &&
+			!value.startsWith("rgba(") &&
+			!value.startsWith("hsl(") &&
+			!value.startsWith("hsla(") &&
+			!value.startsWith("var(")
+		) {
+			return {
+				isValid: false,
+				error: new Error(
+					`Invalid color value: ${value} this helper just does a rough check so if this error is wrong you can update this check!`,
+				),
+			};
+		}
+	}
 
-  return {
-    isValid: true,
-    error: undefined,
-  }
-}
+	return {
+		isValid: true,
+		error: undefined,
+	};
+};
 
 export const validColor = (value: ColorValue): ColorTokens | undefined => {
-  if (process.env.NODE_ENV !== 'production') {
-    const { isValid, error } = validateColorValue(value)
+	if (process.env.NODE_ENV !== "production") {
+		const { isValid, error } = validateColorValue(value);
 
-    if (!isValid) {
-      throw error
-    }
-  }
+		if (!isValid) {
+			throw error;
+		}
+	}
 
-  if (!value) {
-    return undefined
-  }
+	if (!value) {
+		return undefined;
+	}
 
-  return value as ColorTokens
-}
+	return value as ColorTokens;
+};
 
 /**
  * Returns the hover color token if it exists, otherwise returns the original color token passed in.
@@ -209,18 +214,23 @@ export const validColor = (value: ColorValue): ColorTokens | undefined => {
  * @param {ColorValue} nonHoveredColor - The original color token.
  * @returns {ColorTokens} The hover color token if it exists, otherwise the original color token.
  */
-export const getMaybeHoverColor = (nonHoveredColor: ColorValue): ColorTokens => {
-  if (typeof nonHoveredColor === 'string' && getIsValidSporeColor(nonHoveredColor)) {
-    const maybeHoveredColor = `${nonHoveredColor}Hovered`
+export const getMaybeHoverColor = (
+	nonHoveredColor: ColorValue,
+): ColorTokens => {
+	if (
+		typeof nonHoveredColor === "string" &&
+		getIsValidSporeColor(nonHoveredColor)
+	) {
+		const maybeHoveredColor = `${nonHoveredColor}Hovered`;
 
-    const isValidToken = getIsValidSporeColor(maybeHoveredColor)
+		const isValidToken = getIsValidSporeColor(maybeHoveredColor);
 
-    if (!isValidToken) {
-      return nonHoveredColor as ColorTokens
-    }
+		if (!isValidToken) {
+			return nonHoveredColor as ColorTokens;
+		}
 
-    return maybeHoveredColor as ColorTokens
-  }
+		return maybeHoveredColor as ColorTokens;
+	}
 
-  return nonHoveredColor as unknown as ColorTokens
-}
+	return nonHoveredColor as unknown as ColorTokens;
+};

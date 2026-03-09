@@ -26,9 +26,9 @@ export default {
       },
       edgeToEdgeEnabled: true,
       package: IS_DEV ? "com.pasha.app.test" : "com.pasha.app",
-      /*googleServicesFile: IS_DEV
+      googleServicesFile: IS_DEV
         ? "./google-services.test.json"
-        : "./google-services.prod.json",*/
+        : "./google-services.prod.json",
       intentFilters: [
         {
           action: "VIEW",
@@ -54,9 +54,9 @@ export default {
       "expo-router",
       "expo-secure-store",
       //"expo-notifications",
-      //"@react-native-firebase/app",
-      //"@react-native-firebase/auth",
-      //"@react-native-google-signin/google-signin",
+      "@react-native-firebase/app",
+      "@react-native-firebase/auth",
+      "@react-native-google-signin/google-signin",
       [
         "expo-splash-screen",
         {
@@ -77,6 +77,12 @@ export default {
             "./ui/assets/fonts/InputMono-Regular.ttf",
             "./ui/assets/fonts/SpaceMono-Regular.ttf",
           ],
+        },
+      ],
+      [
+        "react-native-bottom-tabs",
+        {
+          theme: "material3",
         },
       ],
       [

@@ -1,7 +1,7 @@
-import { FOCUS_SCALE } from '@/ui/components/buttons/Button/components/CustomButtonFrame/constants'
-import { withCommonPressStyle } from '@/ui/components/buttons/Button/components/CustomButtonFrame/utils'
+import { FOCUS_SCALE } from '@/ui/components/buttons/Button/constants'
+import { withCommonPressStyle } from '@/ui/components/buttons/Button/utils/withCommonPressStyle'
 import { isWeb } from '@/utilities/platform'
-import { styled, YStack, type YStackProps } from 'tamagui'
+import { YStack, styled, type YStackProps } from 'tamagui'
 
 type TouchableAreaVariant = 'unstyled' | 'none' | 'outlined' | 'filled' | 'raised' | 'floating'
 
@@ -19,6 +19,8 @@ export const TouchableAreaFrame = styled(YStack, {
   tag: 'div',
   role: 'button',
   group: true,
+  animation: 'simple',
+  animateOnly: ['transform', 'opacity'],
   pressStyle: withCommonPressStyle({}),
   rounded: '$md',
   bg: '$transparent',
@@ -58,12 +60,6 @@ export const TouchableAreaFrame = styled(YStack, {
         cursor: 'default',
         '$platform-web': {
           pointerEvents: 'none',
-        },
-      },
-      false: {
-        '$platform-web': {
-          // Explicitly setting this enables a child to be clickable even when the parent is disabled
-          pointerEvents: 'auto',
         },
       },
     },
@@ -115,7 +111,7 @@ export const TouchableAreaFrame = styled(YStack, {
         hoverStyle: hoverable
           ? {
               borderColor: '$surface3Hovered',
-            bg: '$surface3Hovered',
+              bg: '$surface3Hovered',
             }
           : undefined,
         focusVisibleStyle: {
@@ -195,5 +191,3 @@ export const TouchableAreaFrame = styled(YStack, {
     row: false,
   },
 })
-
-TouchableAreaFrame.displayName = 'TouchableAreaFrame'

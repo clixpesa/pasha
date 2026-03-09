@@ -5,8 +5,11 @@ import {
 	createSlice,
 } from "@reduxjs/toolkit";
 
-//import { ratesApi } from "@/features/wallet/rates";
-//import { blockscoutApi } from "@/features/wallet/transactions/blockscout";
+import { ratesApi } from "@/features/wallet/rates";
+import { blockscoutApi } from "@/features/wallet/transactions/blockscout";
+import {
+	xwiftRampsApi,
+} from "@/features/wallet/transactions/ramps";
 
 import { storeEffects } from "./effects";
 
@@ -20,10 +23,9 @@ const reduxSlice = createSlice({
 
 const rootReducer = combineReducers({
 	redux: reduxSlice.reducer,
-	/*[blockscoutApi.reducerPath]: blockscoutApi.reducer,
-	[paydRampsApi.reducerPath]: paydRampsApi.reducer,
+	[blockscoutApi.reducerPath]: blockscoutApi.reducer,
 	[xwiftRampsApi.reducerPath]: xwiftRampsApi.reducer,
-	[ratesApi.reducerPath]: ratesApi.reducer,*/
+	[ratesApi.reducerPath]: ratesApi.reducer,
 });
 
 export const store = configureStore({
@@ -31,10 +33,9 @@ export const store = configureStore({
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().prepend(
 			listenerMiddleware.middleware,
-			/*blockscoutApi.middleware,
-			paydRampsApi.middleware,
-			xwiftRampsApi.middleware,*/
-			//ratesApi.middleware,
+			blockscoutApi.middleware,
+			xwiftRampsApi.middleware,
+			ratesApi.middleware,
 		),
 });
 

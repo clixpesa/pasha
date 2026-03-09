@@ -1,17 +1,17 @@
 import { getHoverCssFilter } from '@/ui/utils/colors'
+import type { JSX } from 'react'
 import { GetProps, styled, XStack } from 'tamagui'
-import { buttonStyledContext } from '../../constants'
+import { buttonStyledContext, FOCUS_SCALE } from '../../constants'
 import type { ButtonVariantProps } from '../../types'
 import { getMaybeHexOrRGBColor } from '../../utils/getMaybeHexOrRGBColor'
-import { FOCUS_SCALE } from './constants'
-import { withCommonPressStyle } from './utils'
+import { withCommonPressStyle } from '../../utils/withCommonPressStyle'
 import { variantEmphasisHash } from './variantEmphasisHash'
 
 const CustomButtonFrameWithoutCustomProps = styled(XStack, {
   context: buttonStyledContext,
   name: 'Button',
   tag: 'button',
-  group: 'item',
+  group: true, //figure out how to add XGroup
   '$platform-web': {
     containerType: 'normal',
   },
@@ -82,14 +82,14 @@ const CustomButtonFrameWithoutCustomProps = styled(XStack, {
         // @ts-expect-error we know isDisabled will be ButtonVariantProps['isDisabled']
         if (props.isDisabled && !props.onDisabledPress) {
           return {
-            backgroundColor: '$surface2',
+            bg: '$surface2',
           }
         }
 
         // @ts-expect-error we know this will potentially be on `props`
         if (props.onDisabledPress) {
           return {
-            backgroundColor: '$surface2',
+            bg: '$surface2',
             pressStyle: withCommonPressStyle({}),
           }
         }
@@ -99,7 +99,7 @@ const CustomButtonFrameWithoutCustomProps = styled(XStack, {
         // We're unable to directly inject the props of a component created using `styled`, so we've typecasted it below, resulting in `primary-color` being an accepted prop when using `CustomButtonFrame` directly
         const maybePrimaryColor = getMaybeHexOrRGBColor(props['primary-color'])
 
-        // When a `backgroundColor` is passed in as a prop, we automatically use it to set the other states
+        // When a `bg` is passed in as a prop, we automatically use it to set the other states
         // This is also passed via `buttonStyledContext` and is available on `props` to components created using `styled` that also use `buttonStyledContext`, for example `CustomButtonText`
         if (maybeHexOrRGBColorFromProps) {
           const DARK_FILTER = getHoverCssFilter({ isDarkMode: true, differenceFrom1: 0.25 })
@@ -152,15 +152,16 @@ const CustomButtonFrameWithoutCustomProps = styled(XStack, {
     },
     size: {
       "2xs": {
-        p: '$xs',
-        rounded: '$sm',
+        px: '$xs',
+        py: '$2xs',
+        rounded: '$md',
         gap: '$2xs',
       },
       xs: {
         px: '$sm',
         py: '$vs',
         rounded: '$md',
-        gap: '$2xs',
+        gap: '$vs',
       },
       sm: {
         px: '$sm',
@@ -181,13 +182,13 @@ const CustomButtonFrameWithoutCustomProps = styled(XStack, {
         gap: '$sm',
       },
     },
-    fill: {
+    /*fill: {
       true: {
         alignSelf: 'stretch',
         flex: 1,
         flexBasis: 0,
       },
-    },
+    },*/
     // TODO(WEB-6347): change variant name back to `disabled`
     isDisabled: (untypedIsDisabled, { props }) => {
       // @ts-expect-error we know this will potentially be on `props`
@@ -222,12 +223,9 @@ const CustomButtonFrameWithoutCustomProps = styled(XStack, {
     variant: 'default',
     emphasis: 'primary',
     focusScaling: 'default',
-    fill: true,
     size: 'md',
   },
 })
-
-CustomButtonFrameWithoutCustomProps.displayName = 'CustomButtonFrameWithoutCustomProps'
 
 type CustomProps = {
   'primary-color'?: string

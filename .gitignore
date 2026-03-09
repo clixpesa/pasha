@@ -152,8 +152,10 @@ vite.config.ts.timestamp-*
 
 expo-env.d.ts
 # @end expo-cli
-
+.expo/
 .tamagui
+google-services.prod.json
+google-services.test.json
 
 # keep types in repo to track them
 # **/types/**/*.d.ts
