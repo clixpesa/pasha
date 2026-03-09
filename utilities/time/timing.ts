@@ -1,22 +1,27 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from "react";
 
-export const DEFAULT_DELAY = 200
+export const DEFAULT_DELAY = 200;
 
 export function sleep(milliseconds: number): Promise<boolean> {
-  return new Promise((resolve) => setTimeout(() => resolve(true), milliseconds))
+	return new Promise((resolve) =>
+		setTimeout(() => resolve(true), milliseconds),
+	);
 }
 
-export async function promiseTimeout<T>(promise: Promise<T>, milliseconds: number): Promise<T | null> {
-  // Create a promise that rejects in <ms> milliseconds
-  const timeout = new Promise<null>((resolve) => {
-    const id = setTimeout(() => {
-      clearTimeout(id)
-      resolve(null)
-    }, milliseconds)
-  })
-  // Awaits the race, which will throw on timeout
-  const result = await Promise.race([promise, timeout])
-  return result
+export async function promiseTimeout<T>(
+	promise: Promise<T>,
+	milliseconds: number,
+): Promise<T | null> {
+	// Create a promise that rejects in <ms> milliseconds
+	const timeout = new Promise<null>((resolve) => {
+		const id = setTimeout(() => {
+			clearTimeout(id);
+			resolve(null);
+		}, milliseconds);
+	});
+	// Awaits the race, which will throw on timeout
+	const result = await Promise.race([promise, timeout]);
+	return result;
 }
 
 /**
@@ -24,141 +29,172 @@ export async function promiseTimeout<T>(promise: Promise<T>, milliseconds: numbe
  * @param promise to execute
  * @param milliseconds length of minimum delay time in ms
  */
-export async function promiseMinDelay(promise: Promise<unknown>, milliseconds: number): Promise<unknown> {
-  const minDelay = new Promise<null>((resolve) => {
-    const id = setTimeout(() => {
-      clearTimeout(id)
-      resolve(null)
-    }, milliseconds)
-  })
-  // Awaits until either the promise rejects or both the promise and minimum delay have resolved
-  const [result] = await Promise.all([promise, minDelay])
-  return result
+export async function promiseMinDelay(
+	promise: Promise<unknown>,
+	milliseconds: number,
+): Promise<unknown> {
+	const minDelay = new Promise<null>((resolve) => {
+		const id = setTimeout(() => {
+			clearTimeout(id);
+			resolve(null);
+		}, milliseconds);
+	});
+	// Awaits until either the promise rejects or both the promise and minimum delay have resolved
+	const [result] = await Promise.all([promise, minDelay]);
+	return result;
 }
 
 // https://usehooks-typescript.com/react-hook/use-interval
 // eslint-disable-next-line max-params
-export function useInterval(callback: () => void, delay: number | null, immediateStart?: boolean): void {
-  const savedCallback = useRef<() => void | null>(undefined)
+export function useInterval(
+	callback: () => void,
+	delay: number | null,
+	immediateStart?: boolean,
+): void {
+	const savedCallback = useRef<() => void | null>(undefined);
 
-  // Remember the latest callback.
-  useEffect(() => {
-    savedCallback.current = callback
-  }, [callback])
+	// Remember the latest callback.
+	useEffect(() => {
+		savedCallback.current = callback;
+	}, [callback]);
 
-  // Set up the interval.
-  useEffect(() => {
-    const tick = (): void => {
-      // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-      if (typeof savedCallback?.current !== 'undefined') {
-        // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-        savedCallback?.current()
-      }
-    }
+	// Set up the interval.
+	useEffect(() => {
+		const tick = (): void => {
+			// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+			if (typeof savedCallback?.current !== "undefined") {
+				// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+				savedCallback?.current();
+			}
+		};
 
-    if (delay !== null) {
-      if (immediateStart) {
-        tick()
-      }
+		if (delay !== null) {
+			if (immediateStart) {
+				tick();
+			}
 
-      const id = setInterval(tick, delay)
-      return () => clearInterval(id)
-    }
+			const id = setInterval(tick, delay);
+			return () => clearInterval(id);
+		}
 
-    return undefined
-  }, [delay, immediateStart])
+		return undefined;
+	}, [delay, immediateStart]);
 }
 
-type Timeout = ReturnType<typeof setTimeout>
+type Timeout = ReturnType<typeof setTimeout>;
 
 // https://medium.com/javascript-in-plain-english/usetimeout-react-hook-3cc58b94af1f
 export const useTimeout = (
-  callback: () => void,
-  delay = 0, // in ms (default: immediately put into JS Event Queue)
+	callback: () => void,
+	delay = 0, // in ms (default: immediately put into JS Event Queue)
 ): (() => void) => {
-  const timeoutIdRef = useRef<Timeout>(undefined)
+	const timeoutIdRef = useRef<Timeout>(undefined);
 
-  const cancel = useCallback(() => {
-    const timeoutId = timeoutIdRef.current
-    if (timeoutId) {
-      timeoutIdRef.current = undefined
-      clearTimeout(timeoutId)
-    }
-  }, [])
+	const cancel = useCallback(() => {
+		const timeoutId = timeoutIdRef.current;
+		if (timeoutId) {
+			timeoutIdRef.current = undefined;
+			clearTimeout(timeoutId);
+		}
+	}, []);
 
-  useEffect(() => {
-    if (delay >= 0) {
-      timeoutIdRef.current = setTimeout(callback, delay)
-    }
-    return cancel
-  }, [callback, delay, cancel])
+	useEffect(() => {
+		if (delay >= 0) {
+			timeoutIdRef.current = setTimeout(callback, delay);
+		}
+		return cancel;
+	}, [callback, delay, cancel]);
 
-  return cancel
-}
+	return cancel;
+};
 
 // Copied from https://github.com/Uniswap/interface/blob/main/src/hooks/useDebounce.ts
 // Which is modified from https://usehooks.com/useDebounce/
 export function useDebounce<T>(value: T, delay: number = DEFAULT_DELAY): T {
-  const [debouncedValue] = useDebounceWithStatus({ value, delay })
-  return debouncedValue
+	const [debouncedValue] = useDebounceWithStatus({ value, delay });
+	return debouncedValue;
 }
 
 export function useDebounceWithStatus<T>({
-  value,
-  delay = DEFAULT_DELAY,
-  skipDebounce = false,
+	value,
+	delay = DEFAULT_DELAY,
+	skipDebounce = false,
 }: {
-  value: T
-  delay?: number
-  skipDebounce?: boolean
+	value: T;
+	delay?: number;
+	skipDebounce?: boolean;
 }): [T, boolean] {
-  const [debouncedValue, setDebouncedValue] = useState<T>(value)
-  const [isDebouncing, setIsDebouncing] = useState(false)
+	const [debouncedValue, setDebouncedValue] = useState<T>(value);
+	const [isDebouncing, setIsDebouncing] = useState(false);
 
-  useEffect(() => {
-    if (skipDebounce) {
-      setDebouncedValue(value)
-      return
-    }
-    // Update debounced value after delay
-    const handler = setTimeout(() => {
-      setDebouncedValue(value)
-      setIsDebouncing(false)
-    }, delay)
+	useEffect(() => {
+		if (skipDebounce) {
+			setDebouncedValue(value);
+			return;
+		}
+		// Update debounced value after delay
+		const handler = setTimeout(() => {
+			setDebouncedValue(value);
+			setIsDebouncing(false);
+		}, delay);
 
-    setIsDebouncing(true)
+		setIsDebouncing(true);
 
-    // Cancel the timeout if value changes (also on delay change or unmount)
-    // This is how we prevent debounced value from updating if value is changed ...
-    // .. within the delay period. Timeout gets cleared and restarted.
-    // eslint-disable-next-line consistent-return
-    return () => {
-      clearTimeout(handler)
-    }
-  }, [value, delay, skipDebounce])
+		// Cancel the timeout if value changes (also on delay change or unmount)
+		// This is how we prevent debounced value from updating if value is changed ...
+		// .. within the delay period. Timeout gets cleared and restarted.
+		// eslint-disable-next-line consistent-return
+		return () => {
+			clearTimeout(handler);
+		};
+	}, [value, delay, skipDebounce]);
 
-  if (skipDebounce) {
-    return [value, false]
-  }
+	if (skipDebounce) {
+		return [value, false];
+	}
 
-  return [debouncedValue, isDebouncing]
+	return [debouncedValue, isDebouncing];
 }
 
 export function debounceCallback<T extends (...args: void[]) => void>(
-  func: T,
-  wait: number,
+	func: T,
+	wait: number,
 ): { triggerDebounce: () => void; cancelDebounce: () => void } {
-  let timeout: NodeJS.Timeout | number
+	let timeout: NodeJS.Timeout | number;
 
-  const cancelDebounce = (): void => {
-    clearTimeout(timeout)
-  }
+	const cancelDebounce = (): void => {
+		clearTimeout(timeout);
+	};
 
-  return {
-    triggerDebounce: (): void => {
-      clearTimeout(timeout)
-      timeout = setTimeout(func, wait)
-    },
-    cancelDebounce,
-  }
+	return {
+		triggerDebounce: (): void => {
+			clearTimeout(timeout);
+			timeout = setTimeout(func, wait);
+		},
+		cancelDebounce,
+	};
 }
+
+export const throttle = async <T>(
+	tasks: (() => Promise<T>)[],
+	maxPerSecond: number,
+	interval = 1000,
+): Promise<T[]> => {
+	const results: T[] = [];
+	const queue = [...tasks];
+
+	while (queue.length) {
+		const batch = queue.splice(0, maxPerSecond);
+		const batchStart = Date.now();
+
+		const batchResults = await Promise.all(batch.map((task) => task()));
+		results.push(...batchResults);
+
+		const elapsed = Date.now() - batchStart;
+		if (elapsed < interval && queue.length) {
+			await new Promise((resolve) => setTimeout(resolve, interval - elapsed));
+		}
+	}
+
+	return results;
+};
