@@ -112,6 +112,21 @@ export const supportedChains: Record<ChainId, ChainInfo> = {
 			url: "https://snowtrace.io/",
 			apiUrl: "https://api.snowtrace.io/api",
 		},
+		contracts: {
+			...avalanche.contracts,
+			overdraft: {
+				address: "0x3ff87826d81296fBf7d9DecfC43b1e6b20a151a1",
+				blockCreated: 52535250,
+			},
+			goalSavings: {
+				address: "0xA8bd226aD6E2714D816adECB6C3D7C4CF884285d",
+				blockCreated: 51359990,
+			},
+			roscas: {
+				address: "0x2A5Be2d605Ca47E77b0Be0916dce86B781DA2371",
+				blockCreated: 51581712,
+			},
+		},
 		logo: require("@/ui/assets/images/network-logos/avalanche-logo.png"),
 	},
 	[ChainId.BaseSepolia]: {

@@ -64,7 +64,7 @@ export const supportedTokens: Record<string, Token> = {
 		address: "0xAFDa926d549a67229D8DB529638E0BAFCDb66458",
 		name: "Tether USD",
 		symbol: "USDT",
-		decimals: 6,
+		decimals: 18,
 		logo: require("@/ui/assets/images/token-logos/tether-logo.png"),
 		isNative: false,
 	},
