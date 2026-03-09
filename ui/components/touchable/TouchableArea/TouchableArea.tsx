@@ -1,13 +1,14 @@
 import { ThemedIcon } from '@/ui/components/buttons/Button/components/ThemedIcon'
 import { withAnimated } from '@/ui/components/factories/animated'
 import { Text, type TextProps } from '@/ui/components/text'
-import { getMaybeHoverColor, tokens } from '@/ui/theme/tokens'
-import { isIOS, isMobileApp, isWeb } from '@/utilities/platform'
+import { getMaybeHoverColor } from '@/ui/theme/tokens'
+import { isIOS, isMobileApp } from '@/utilities/platform'
 import { useEvent } from '@/utilities/react/hooks'
 import { BlurView, type BlurViewProps } from 'expo-blur'
-import React, { Children, cloneElement, forwardRef, isValidElement, memo, type ReactNode, useMemo } from 'react'
-import { type GestureResponderEvent, StyleSheet } from 'react-native'
-import { type ColorTokens, type TamaguiElement, withStaticProperties, type YStackProps } from 'tamagui'
+import { Children, cloneElement, forwardRef, isValidElement, memo, useMemo, type JSX, type ReactNode } from 'react'
+import { StyleSheet, type GestureResponderEvent } from 'react-native'
+import type { ColorTokens, TamaguiElement, YStackProps } from 'tamagui'
+import { withStaticProperties } from "tamagui"
 import { TouchableAreaFrame } from './TouchableAreaFrame'
 import type { TouchableAreaProps } from './types'
 import { useAutoDimensions } from './useAutoDimensions'
@@ -16,75 +17,63 @@ import { useAutoHitSlop } from './useAutoHitSlop'
 export type TouchableAreaEvent = GestureResponderEvent
 
 // TODO(MOB-2826): tests are picking up weird animationStyle on snapshots...
-const DEFAULT_ANIMATION_PROPS: Partial<YStackProps> =  {
+const DEFAULT_ANIMATION_PROPS: Partial<YStackProps> = {
       animation: 'simple',
       animateOnly: ['transform', 'opacity'],
     }
-const blurViewStyle: BlurViewProps['style'] = { ...StyleSheet.absoluteFillObject, zIndex: tokens.zIndex.negative.val }
+const blurViewStyle: BlurViewProps['style'] = { ...StyleSheet.absoluteFillObject, zIndex: -1 }
 
-const WithInjectedColors = memo(function WithInjectedColors({
-  children,
-  disabled,
-  variant,
-  enabled,
-}: {
-  children: ReactNode
-  disabled?: boolean
-  variant?: TouchableAreaProps['variant']
-  enabled?: boolean
-}): ReactNode[] | ReactNode {
-  if (!enabled) {
-    // Early return if we don't need to inject colors
-    // This is a performance optimization to avoid unnecessary cloning and mapping
-    return children
-  }
-
-  return Children.toArray(children).map((child) => {
-    if (!isValidElement(child)) {
-      return child
-    }
-
-    const childElement = child as ReactElementWithAnyProps
-
-    // Don't inject colors into TouchableArea components - they handle their own styling
-    // This prevents infinite loops with nested TouchableAreas
-    if (childElement.type === TouchableAreaComponentWithoutMemo || childElement.type === TouchableAreaComponent) {
-      return child
-    }
-
-    // We don't want to override this if it's already set
-    let groupHover: TextProps['$group-hover'] = childElement.props['$group-hover']
-
-    // decide which color properties to use
-    const maybeColor: string | ColorTokens = childElement.props.color ?? '$accent3'
-    const maybeBackgroundColor: string | ColorTokens = childElement.props.backgroundColor
-
-    // if we don't have a group hover, and we have a color or background color, we can get a hover color
-    if (!groupHover && [maybeColor, maybeBackgroundColor].some((val) => typeof val === 'string')) {
-      const maybeColorHover = getMaybeHoverColor(maybeColor)
-      const maybeBackgroundColorHover = getMaybeHoverColor(maybeBackgroundColor)
-
-      groupHover = {
-        color: disabled ? undefined : maybeColorHover,
-        bg: disabled ? undefined : maybeBackgroundColorHover,
+const WithInjectedColors = memo(
+  ({
+    children,
+    disabled,
+    variant,
+  }: {
+    children: ReactNode
+    disabled?: boolean
+    variant?: TouchableAreaProps['variant']
+  }): ReactNode[] => {
+    return Children.toArray(children).map((child) => {
+      if (!isValidElement(child)) {
+        return child
       }
-    }
 
-    // `disabled` overrides `maybeBackgroundColor` if it's already set
-    const backgroundColorConsideringDisabled: string | ColorTokens =
-      disabled && (variant === 'filled' || maybeBackgroundColor) ? '$surface2' : maybeBackgroundColor
+      // We don't want to override this if it's already set
+      let groupHover: TextProps['$group-hover'] = child.props['$group-hover']
 
-    // `disabled` overrides `maybeColor` if it's already set
-    const colorConsideringDisabled: string | ColorTokens = disabled ? '$neutral2' : maybeColor
+      // decide which color properties to use
+      const maybeColor: string | ColorTokens = child.props.color ?? '$accent3'
+      const maybeBackgroundColor: string | ColorTokens = child.props.bg
 
-    return cloneElement(child, {
-      // @ts-expect-error '$group-item-hover' is a tamagui type, not a React Native type
-      color: colorConsideringDisabled,
-      bg: backgroundColorConsideringDisabled,
-      '$group-hover': groupHover,
+      // if we don't have a group hover, and we have a color or background color, we can get a hover color
+      if (!groupHover && [maybeColor, maybeBackgroundColor].some((val) => typeof val === 'string')) {
+        const maybeColorHover = getMaybeHoverColor(maybeColor)
+        const maybeBackgroundColorHover = getMaybeHoverColor(maybeBackgroundColor)
+
+        groupHover = {
+          color: disabled ? undefined : maybeColorHover,
+          bg: disabled ? undefined : maybeBackgroundColorHover,
+        }
+      }
+
+      // `disabled` overrides `maybeBackgroundColor` if it's already set
+      const backgroundColorConsideringDisabled: string | ColorTokens =
+        disabled && (variant === 'filled' || maybeBackgroundColor) ? '$surface2' : maybeBackgroundColor
+
+      // `disabled` overrides `maybeColor` if it's already set
+      const colorConsideringDisabled: string | ColorTokens = disabled ? '$neutral2' : maybeColor
+
+      return cloneElement(child, {
+        // @ts-expect-error '$group-item-hover' is a tamagui type, not a React Native type
+        color: colorConsideringDisabled,
+        bg: backgroundColorConsideringDisabled,
+        '$group-hover': groupHover,
+      })
     })
-  })
-})
+  }
+)
+
+WithInjectedColors.displayName = 'WithInjectedColors'
 
 const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAreaProps>(function TouchableArea(
   {
@@ -104,7 +93,6 @@ const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAr
     onPress,
     onPressIn,
     onPressOut,
-    shouldAutomaticallyInjectColors = isWeb,
     ...restProps
   },
   ref,
@@ -119,27 +107,14 @@ const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAr
   })
 
   const pressStyle: YStackProps['pressStyle'] = useMemo(() => {
-    const maybeScaleStyle = scaleTo ? { scale: scaleTo } : {}
-    const maybeActiveOpacityStyle = activeOpacity ? { opacity: activeOpacity } : {}
+    const maybeScaleStyle = scaleTo ? { scale: scaleTo } : undefined
+    const maybeActiveOpacityStyle = activeOpacity ? { opacity: activeOpacity } : undefined
 
-    const finalStyle = StyleSheet.flatten([maybeScaleStyle, maybeActiveOpacityStyle, pressStyleProp])
-
-    return finalStyle
+    return StyleSheet.flatten([maybeScaleStyle, maybeActiveOpacityStyle, pressStyleProp].filter(Boolean))
   }, [scaleTo, activeOpacity, pressStyleProp])
 
-  // Tamagui bug: when animation prop is set alongside $group-* props, fatal exceptions occur in React 19
-  // Solution: only include animation/animateOnly in props spread when explicitly set (not null)
-  const animationAndAnimateOnly: { animation?: YStackProps['animation']; animateOnly?: YStackProps['animateOnly'] } =
-    useMemo(() => {
-      const animation =  (animationProp ?? DEFAULT_ANIMATION_PROPS.animation)
-      const animateOnly =  (animateOnlyProp ?? DEFAULT_ANIMATION_PROPS.animateOnly)
-
-      if (animationProp === null) {
-        return {}
-      }
-
-      return { animation, animateOnly }
-    }, [animationProp, animateOnlyProp])
+  const animation = animationProp ?? DEFAULT_ANIMATION_PROPS.animation
+  const animateOnly = animateOnlyProp ?? DEFAULT_ANIMATION_PROPS.animateOnly
 
   // Wrap onPress to stop propagation if needed
   const handlePress = useEvent((event: TouchableAreaEvent): void => {
@@ -148,7 +123,7 @@ const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAr
       return
     }
 
-    if (typeof event.stopPropagation === 'function') {
+    if (typeof event?.stopPropagation === 'function') {
       event.stopPropagation()
     }
 
@@ -162,7 +137,7 @@ const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAr
       return
     }
 
-    if (typeof event.stopPropagation === 'function') {
+    if (typeof event?.stopPropagation === 'function') {
       event.stopPropagation()
     }
 
@@ -175,7 +150,7 @@ const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAr
       return
     }
 
-    if (typeof event.stopPropagation === 'function') {
+    if (typeof event?.stopPropagation === 'function') {
       event.stopPropagation()
     }
 
@@ -188,18 +163,19 @@ const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAr
         ref={ref}
         hoverable={hoverable}
         hitSlop={hitSlop}
+        animation={animation}
+        animateOnly={animateOnly}
         variant={variant}
         pressStyle={pressStyle}
         onLayout={onLayout}
         onPress={onPress ? handlePress : undefined}
-        onPressIn={onPressIn ? handlePressIn : undefined}
-        onPressOut={onPressOut ? handlePressOut : undefined}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
         {...restProps}
-        {...animationAndAnimateOnly}
         width={width}
         height={height}
       >
-        <WithInjectedColors enabled={shouldAutomaticallyInjectColors} variant={variant} disabled={restProps.disabled}>
+        <WithInjectedColors variant={variant} disabled={restProps.disabled}>
           {children}
         </WithInjectedColors>
         <BlurView
@@ -217,6 +193,8 @@ const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAr
     <TouchableAreaFrame
       ref={ref}
       hoverable={hoverable}
+      animation={animation}
+      animateOnly={animateOnly}
       variant={variant}
       hitSlop={hitSlop}
       pressStyle={pressStyle}
@@ -225,11 +203,10 @@ const TouchableAreaComponentWithoutMemo = forwardRef<TamaguiElement, TouchableAr
       onPressIn={onPressIn ? handlePressIn : undefined}
       onPressOut={onPressOut ? handlePressOut : undefined}
       {...restProps}
-      {...animationAndAnimateOnly}
       width={width}
       height={height}
     >
-      <WithInjectedColors enabled={shouldAutomaticallyInjectColors} variant={variant} disabled={restProps.disabled}>
+      <WithInjectedColors variant={variant} disabled={restProps.disabled}>
         {children}
       </WithInjectedColors>
     </TouchableAreaFrame>
@@ -261,14 +238,12 @@ const TouchableAreaComponent = memo(TouchableAreaComponentWithoutMemo)
  * @param {number | undefined} activeOpacity - If provided, the component will have the given opacity when pressed. Defaults to 0.75.
  * @param {TouchableAreaProps} restProps - Additional props passed down to the underlying `TouchableAreaFrame`.
  * @param {boolean} [shouldStopPropagation=true] - If true (default), calls event.stopPropagation() on press events to prevent bubbling to parent touchables.
- * @param {boolean} [shouldAutomaticallyInjectColors] - If true, automatically injects colors into the children based on the Spore Design System guidelines. Defaults to true on web, false on native.
  * @param {React.Ref<TamaguiElement>} ref - Forwarded ref to the underlying `TouchableAreaFrame` element.
  * @returns {JSX.Element} The rendered TouchableArea component.
  * @see TouchableAreaFrame for styling and variant options.
  * @see useAutoHitSlop for automatic hitSlop calculation.
  * @see useAutoDimensions for minimum dimension handling.
  */
-
 export const TouchableArea = withStaticProperties(TouchableAreaComponent, {
   Text,
   Icon: ThemedIcon,

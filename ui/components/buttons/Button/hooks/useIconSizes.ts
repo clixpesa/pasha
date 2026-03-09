@@ -1,9 +1,8 @@
 import { useMemo } from 'react'
 import { getTokenValue } from 'tamagui'
 import { IconButtonProps } from '../../IconButton/IconButton'
-import { TypeOfButton } from '../components/types'
 import { lineHeights } from '../constants'
-import { ButtonProps } from '../types'
+import type { ButtonProps, TypeOfButton } from '../types'
 import { getLineHeightForButtonFontTokenKey } from '../utils/getLineHeightForButtonFontTokenKey'
 
 type Size = NonNullable<ButtonProps['size'] | IconButtonProps['size']>

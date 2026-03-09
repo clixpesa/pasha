@@ -1,41 +1,9 @@
 import { getContrastPassingTextColor } from '@/ui/utils/colors'
-import type { GetProps } from 'tamagui'
-import { styled, Text } from 'tamagui'
+import { Text, styled } from 'tamagui'
 import { buttonStyledContext, lineHeights } from '../../constants'
 import type { ButtonEmphasis, ButtonVariantProps } from '../../types'
 import { getMaybeHexOrRGBColor } from '../../utils/getMaybeHexOrRGBColor'
 import { variantEmphasisHash } from './variantEmphasisHash'
-
-export function createSizeVariant({
-  fontSize,
-  fontWeight,
-  lineHeightValue,
-}: {
-  fontSize: string
-  fontWeight: string
-  lineHeightValue: string | number
-}) {
-  return (
-    _size: NonNullable<ButtonVariantProps['size']>,
-    context: { props: Record<string, unknown> },
-  ): Record<string, unknown> => {
-    const baseStyles = {
-      fontSize,
-      fontWeight,
-    }
-
-    const lineHeightDisabled = context.props['line-height-disabled']
-
-    if (lineHeightDisabled === 'true') {
-      return baseStyles
-    }
-
-    return {
-      ...baseStyles,
-      lineHeight: lineHeightValue,
-    }
-  }
-}
 
 /**
  * This component is used to render the text/label within our `Button` component.
@@ -43,14 +11,13 @@ export function createSizeVariant({
  * @props custom-background-color - The background color of the `Button` this `CustomButtonText` is a child of. If passed, the text will use the contrast color of the background color for its hover state.
  * **NOTE:** this doesn't need to be passed explicitly if `CustomButtonText`, or `Button.Text`, is a child of a `Button` component has a `backgroundColor` prop passed to it..
  */
-const CustomButtonTextStyled = styled(Text, {
+export const CustomButtonText = styled(Text, {
   context: buttonStyledContext,
   tag: 'span',
   fontFamily: '$button',
   color: '$color',
   maxFontSizeMultiplier: 1.2,
   numberOfLines: 1,
-  text: 'center',
   variants: {
     variant: {
       // @ts-expect-error we know variant will be ButtonVariant
@@ -63,7 +30,7 @@ const CustomButtonTextStyled = styled(Text, {
           }
         }
 
-        // @ts-expect-error we know 'custom-bg' might be on `props` via `buttonStyledContext`, and if it is, it's a GetThemeValueForKey<'backgroundColor'> | OpaqueColorValue
+        // @ts-expect-error we know 'custom-background-color' might be on `props` via `buttonStyledContext`, and if it is, it's a GetThemeValueForKey<'backgroundColor'> | OpaqueColorValue
         const customBackgroundColor = props['custom-bg']
         const maybeCustomColorProp = getMaybeHexOrRGBColor(props.color)
 
@@ -122,15 +89,3 @@ const CustomButtonTextStyled = styled(Text, {
     },
   } as const,
 })
-
-type CustomProps = {
-  'line-height-disabled'?: string
-}
-
-type CustomButtonTextWithExtraProps = typeof CustomButtonTextStyled & {
-  (props: CustomProps & GetProps<typeof CustomButtonTextStyled>): JSX.Element | null
-}
-
-export const CustomButtonText = CustomButtonTextStyled as CustomButtonTextWithExtraProps
-
-CustomButtonText.displayName = 'CustomButtonText'

@@ -27,7 +27,7 @@ export type IconButtonProps = {
 const IconButtonFrame = styled(CustomButtonFrame, {
   variants: {
     size: {
-       "2xs": {
+      "2xs": {
         p: '$xs',
         rounded: '$md',
       },
@@ -45,13 +45,11 @@ const IconButtonFrame = styled(CustomButtonFrame, {
       },
       lg: {
         p: '$md',
-        rounded: '$vl',
+        borderRadius: '$vl',
       },
     },
   } as const,
 })
-
-IconButtonFrame.displayName = 'IconButtonFrame'
 
 export const IconButton = forwardRef<TamaguiElement, IconButtonProps>(function IconButton(
   {
@@ -77,7 +75,6 @@ export const IconButton = forwardRef<TamaguiElement, IconButtonProps>(function I
   return (
     <IconButtonFrame
       ref={ref}
-      fill={false}
       isDisabled={isDisabled}
       size={size}
       variant={variant}
