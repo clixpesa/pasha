@@ -163,7 +163,7 @@ const JazishaContent = ({
 			<Button
 				size="lg"
 				variant="branded"
-				emphasis={Number(balance) > 0 ? "secondary" : null}
+				emphasis={Number(balance) > 0 ? "secondary" : "tertiary"}
 				width="85%"
 				loading={isLoading}
 				onPress={onPressButton}

@@ -143,7 +143,7 @@ export const supportedTokens: Record<string, Token> = {
 		logo: require("@/ui/assets/images/token-logos/tether-logo.png"),
 		isNative: false,
 	},
-	//Celo Alfajores Tokens
+	/*Celo Alfajores Tokens
 	[`USDC_${ChainId.Alfajores}`]: {
 		chainId: ChainId.Alfajores,
 		address: "0x2F25deB3848C207fc8E0c34035B3Ba7fC157602B",
@@ -161,5 +161,5 @@ export const supportedTokens: Record<string, Token> = {
 		decimals: 6,
 		logo: require("@/ui/assets/images/token-logos/keli-logo.png"),
 		isNative: false,
-	},
+	},*/
 };

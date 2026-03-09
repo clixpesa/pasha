@@ -76,7 +76,7 @@ export default function ReciveScreen() {
 		>
 			<YStack gap="$md" mt="$lg" width="92%">
 				<Text text="center" px="$2xl" variant="body2">
-					Anyone with Clixpesa can send you cash using your phone number, tag or
+					Anyone with Pasha can send you cash using your phone number, tag or
 					by scanning this QR code
 				</Text>
 				<QRCodeDisplay
