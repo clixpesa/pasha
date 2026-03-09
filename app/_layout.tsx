@@ -65,10 +65,7 @@ function AppInner(): React.JSX.Element {
 	}, [hasAccount, isUnlocked]);
 	const inAuthRoute = segments[0] === "(auth)";
   return (
-		<SafeAreaView style={{ flex: 1, backgroundColor: colors.background.val }} edges={{
-			top: "additive",
-			bottom: "off"
-		}}>
+		<SafeAreaView style={{ flex: 1, backgroundColor: colors.background.val }} >
 			<TestnetModeBanner />
 			{inAuthRoute ? (<Stack>
 				<Stack.Screen name="(auth)" options={{ headerShown: false }}/>

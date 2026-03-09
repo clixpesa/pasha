@@ -80,6 +80,12 @@ export default {
         },
       ],
       [
+        "react-native-bottom-tabs",
+        {
+          theme: "material3",
+        },
+      ],
+      [
         "expo-build-properties",
         {
           ios: {
