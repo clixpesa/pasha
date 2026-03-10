@@ -1,5 +1,8 @@
 ## Pasha Money
+
 ### Unlocking Personalized Finance for Every Human. 
+
+<img src="https://github.com/clixpesa/pasha/blob/main/ui/assets/images/popular-icons/App_Home.png" width="150" alt="home" >  <img src="https://github.com/clixpesa/pasha/blob/main/ui/assets/images/popular-icons/App_Deposit.png" width="150" alt="deposit" >  <img src="https://github.com/clixpesa/pasha/blob/main/ui/assets/images/popular-icons/App_Overdraft.png" width="150" alt="overdraft" >  <img src="https://github.com/clixpesa/pasha/blob/main/ui/assets/images/popular-icons/App_Spaces.png" width="150" alt="spaces" >  <img src="https://github.com/clixpesa/pasha/blob/main/ui/assets/images/popular-icons/App_Invest.png" width="150" alt="invest" >
 
 Features inclide: 
 -   **Overdraft**: Complete transactions with low interest overdraws. 
