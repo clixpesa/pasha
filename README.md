@@ -15,3 +15,5 @@ Contracts:
   Proxy: [0x0c55b35008Ec5D5fceCb8ADB396fF35c84D9eFC9](https://testnet.snowtrace.io/address/0x0c55b35008Ec5D5fceCb8ADB396fF35c84D9eFC9) | Implimentation: 0xeBDcD508D14D01A4c535021a371CD33CdB944257
 - **Goal Savings:**
   Proxy: [0xA2bf97c4b85Ae50e89297Cb4b73E502F3E06A173](https://testnet.snowtrace.io/address/0xA2bf97c4b85Ae50e89297Cb4b73E502F3E06A173) | Implimentation: 0x57235F8304B81A08C71b1a183379B3a0bb51E1Fd
+
+[>>Try the APP: Download<<](https://github.com/clixpesa/pasha/releases/download/v0.1.0-alpha/Pasha_v0.1.0-alpha.apk)
