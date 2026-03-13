@@ -10,7 +10,7 @@ export default {
     name: IS_DEV ? "Pasha Dev" : "Pasha",
     slug: "pasha-money",
     owner: EAS_APP_OWNER,
-    version: "1.0.0",
+    version: "1.0.1",
     orientation: "portrait",
     icon: "./ui/assets/images/icon.png",
     scheme: "pasha.eth",
